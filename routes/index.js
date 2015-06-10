@@ -30,13 +30,13 @@ router.get('/:key/info', function(request, response) {
   var database = app.get('database');
   var urls = database.collection('urls');
 
-  urls.find({'key': request.params.key}).toArray(function(error, urls) {
+  urls.find({'key': request.params.key}).toArray(function(error, records) {
     if (error) {
       throw error;
     } else {
-      var url = urls[0];
+      var url = records[0];
       if (url !== undefined) {
-        response.render('info.jade', {url: urls[0]});
+        response.render('info.jade', {url: url});
       } else {
         response.status(404);
         response.render('404', { key: request.params.key });
@@ -49,11 +49,11 @@ router.get('/:key', function(request, response) {
   var database = app.get('database');
   var urls = database.collection('urls');
 
-  urls.find({'key': request.params.key}).toArray(function(error, urls) {
+  urls.find({'key': request.params.key}).toArray(function(error, records) {
     if (error) {
       throw error;
     } else {
-      var url = urls[0];
+      var url = records[0];
       if (url !== undefined) {
         console.log(url);
         response.redirect(url.target);
