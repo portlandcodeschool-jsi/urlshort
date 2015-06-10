@@ -2,6 +2,13 @@ extends layout
 
 block content
   h3
-    = url.key
+    a(href="/" + url.key)
+      = url.key
     = ' goes to '
     = url.target
+    = '.'
+  h3= 'It has been clicked '
+    = url.count
+    = ' time'
+    = s
+    = '.'
